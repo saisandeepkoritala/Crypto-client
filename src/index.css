@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Outfit", sans-serif;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Fix for iOS Safari viewport issues */
+    height: -webkit-fill-available;
+}
+
+body {
+    /* Prevent white gaps */
+    background: linear-gradient(#0b004e, #1d152f, #002834);
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.app {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    color: white;
+    background: linear-gradient(#0b004e, #1d152f, #002834);
+    width: 100%;
+    position: relative;
+}
+
+/* Mobile-specific fixes */
+@media (max-width: 768px) {
+    html {
+        height: 100%;
+        height: -webkit-fill-available;
+    }
+    
+    body {
+        padding-top: 70px;
+        overflow-x: hidden;
+        /* Ensure no white gaps */
+        background: linear-gradient(#0b004e, #1d152f, #002834);
+        background-attachment: fixed;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+    }
+    
+    .app {
+        padding-top: 0;
+        min-height: calc(100vh - 70px);
+        min-height: calc(-webkit-fill-available - 70px);
+        width: 100%;
+        background: linear-gradient(#0b004e, #1d152f, #002834);
+    }
+    
+    /* Remove tap highlights */
+    * {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+    }
+    
+    /* Allow text selection for inputs and content */
+    input, textarea, [contenteditable], p, span, div {
+        -webkit-user-select: text;
+        -khtml-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+    }
+    
+    /* Fix for mobile keyboard issues */
+    .viewport-fix {
+        height: 100vh;
+        height: -webkit-fill-available;
+    }
+}
+
+/* Prevent zoom on input focus for iOS */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    select, textarea, input[type="text"], input[type="password"], 
+    input[type="datetime"], input[type="datetime-local"], 
+    input[type="date"], input[type="month"], input[type="time"], 
+    input[type="week"], input[type="number"], input[type="email"], 
+    input[type="url"], input[type="search"], input[type="tel"], 
+    input[type="color"] {
+        font-size: 16px;
+    }
+}
+
+/* Loading and Error States */
+.spinner {
+    display: grid;
+    place-items: center;
+    min-height: 60vh;
+    background: transparent;
+}
+
+.spin {
+    width: 65px;
+    height: 65px;
+    border: 5px solid #bdbdbd;
+    border-top-color: #4500c6;
+    border-radius: 50%;
+    animation: rotate 2s infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.error {
+    text-align: center;
+    padding: 60px 20px;
+    color: #ff4646;
+    background: transparent;
+}
+
+.error p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.retry-button {
+    background: linear-gradient(45deg, #4500c6, #6a1b9a);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.retry-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(69, 0, 198, 0.3);
+}
+
+/* Fix for very small screens */
+@media (max-width: 360px) {
+    body {
+        padding-top: 65px;
+    }
+    
+    .app {
+        min-height: calc(100vh - 65px);
+        min-height: calc(-webkit-fill-available - 65px);
+    }
+}
+
+/* Landscape orientation fixes */
+@media (max-width: 768px) and (orientation: landscape) {
+    body {
+        padding-top: 60px;
+    }
+    
+    .app {
+        min-height: calc(100vh - 60px);
+        min-height: calc(100lvh - 60px);
+    }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+    body {
+        /* iOS Safari */
+        min-height: -webkit-fill-available;
+        background-attachment: scroll;
+    }
+    
+    .app {
+        min-height: -webkit-fill-available;
+    }
+}
